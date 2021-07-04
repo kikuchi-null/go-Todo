@@ -1,0 +1,6 @@
+./
+
+!./app
+!./docker
+!./mysql
+!docker-compose.yml

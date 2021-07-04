@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+{{template "header"}}
+
+{{template "private_navbar"}}
+<div class="container text-center">
+    <div class="lead">
+        <h1>Edit Your Task</h1>
+    </div>
+
+    <form role="form" action="/todos/update/{{.Todo_ID}}" method="POST">
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Your Task:</label>
+            <textarea class="form-control" name="content" id="content" rows="4">{{.Content}}</textarea>
+        </div>
+
+        
+        <button class="btn btn-lg btn-primary pull-right" type="submit">Update</button>
+
+    </form>
+</div>
+
+{{template "footer"}}
+
+</html>
+

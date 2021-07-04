@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+{{template "header"}}
+
+{{template "private_navbar"}}
+<div class="container text-center">
+    <div class="lead">
+        <h1>Are you sure?</h1>
+    </div>
+    <form role="form" action="/todos/delete/{{.Todo_ID}}" method="POST">
+        <div>
+            <div class="card">
+                <h5 class="card-header">Created at {{.Create_At}}</h5>
+                    <div class="card-body">
+                        <h4 class="card-text">{{.Content}}</h3><br>
+                        <h6 class="card-subtitle mb-2 text-muted">Updated at {{.Update_At}}</h6>
+                    </div>
+            </div>
+            <button class="btn btn-lg btn-primary pull-right" type="submit">Delete</button>
+        </div>
+    </form>
+</div>
+
+{{template "footer"}}
+
+</html>
