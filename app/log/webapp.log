@@ -28,3 +28,7 @@
 2021/07/02 22:47:04 route_main.go:118: strconv.Atoi: parsing "{\u200c{.Todo_ID}}": invalid syntax
 2021/07/02 22:54:38 route_main.go:118: strconv.Atoi: parsing "": invalid syntax
 2021/07/11 02:17:55 base.go:20: 
+2021/09/29 17:20:23 route_main.go:32: Error 1146: Table 'todo.todos' doesn't exist
+2021/09/29 17:20:36 route_main.go:32: Error 1146: Table 'todo.todos' doesn't exist
+2021/09/29 17:20:48 route_main.go:32: Error 1146: Table 'todo.todos' doesn't exist
+2021/09/29 17:20:49 route_main.go:32: Error 1146: Table 'todo.todos' doesn't exist
