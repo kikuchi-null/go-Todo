@@ -2,7 +2,8 @@
 
 !./app
 !./docker
-!./mysql
+!./mysql/init
+!./mysql/my.cnf
 !docker-compose.yml
 
 .DS_Store
