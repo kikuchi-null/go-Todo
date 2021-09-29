@@ -6,5 +6,5 @@
 !./mysql/my.cnf
 !docker-compose.yml
 
-.DS_Store
-./mysql/data
+/.DS_Store
+/mysql/data/
