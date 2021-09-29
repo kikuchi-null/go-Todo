@@ -8,9 +8,9 @@ import (
 
 func main() {
 
-	// gin.SetMode(gin.DebugMode)
+	gin.SetMode(gin.DebugMode)
 	// gin.SetMode(gin.ReleaseMode)
-	gin.SetMode(gin.TestMode)
+	// gin.SetMode(gin.TestMode)
 
 	controllers.StartServer()
 
