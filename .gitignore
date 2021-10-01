@@ -13,3 +13,5 @@
 
 /.devcontainer/
 /mysql/data/
+
+/app/log/webapp.log
