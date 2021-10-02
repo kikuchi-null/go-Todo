@@ -15,7 +15,7 @@ type PageList struct {
 	Signup  string
 	Login   string
 	Index   string
-	User    string
+	Profile string
 	Create  string
 	Edit    string
 	Confirm string
@@ -58,14 +58,14 @@ func LoadPageList() PageList {
 	}
 
 	Pages := PageList{
-		Top:     cfg.Section("page").Key("top").String(),
-		Signup:  cfg.Section("page").Key("signup").String(),
-		Login:   cfg.Section("page").Key("login").String(),
-		Index:   cfg.Section("page").Key("index").String(),
-		User:    cfg.Section("page").Key("user").String(),
-		Create:  cfg.Section("page").Key("create").String(),
-		Edit:    cfg.Section("page").Key("edit").String(),
-		Confirm: cfg.Section("page").Key("confirm").String(),
+		Login:   cfg.Section("auth").Key("login").String(),
+		Signup:  cfg.Section("auth").Key("signup").String(),
+		Index:   cfg.Section("main").Key("index").String(),
+		Profile: cfg.Section("main").Key("profile").String(),
+		Top:     cfg.Section("main").Key("top").String(),
+		Create:  cfg.Section("task").Key("create").String(),
+		Confirm: cfg.Section("task").Key("confirm").String(),
+		Edit:    cfg.Section("task").Key("edit").String(),
 	}
 
 	return Pages

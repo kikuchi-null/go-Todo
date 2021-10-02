@@ -24,7 +24,7 @@ func profile(c *gin.Context) {
 			log.Println(err)
 		}
 
-		c.HTML(http.StatusOK, LoadPageList().User, gin.H{
+		c.HTML(http.StatusOK, LoadPageList().Profile, gin.H{
 			"Name":      user.Name,
 			"Email":     user.Email,
 			"CreatedAt": user.Create_At,

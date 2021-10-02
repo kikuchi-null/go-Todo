@@ -3,9 +3,9 @@
 go mod tidy >> /dev/null
 
 if [ $? -eq 0 ]; then
-    echo "Go Live."
+    echo "URL: http://localhost:8080/"
     go run main.go
 else
-    echo "\"go mod tidy\" is failed"
+    echo "Failed to start"
 fi
 

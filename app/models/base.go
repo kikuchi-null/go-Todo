@@ -31,3 +31,12 @@ func Encrypt(plainPassword string) (cryptPassword string) {
 	cryptPassword = fmt.Sprintf("%x", sha1.Sum([]byte(plainPassword)))
 	return cryptPassword
 }
+
+/*
+func stringToTime(str string) time.Time {
+	layout := "2006-01-02T15:04:05"
+	value, _ := time.Parse(layout, str)
+	fmt.Println(value)
+	return value
+}
+*/

@@ -31,5 +31,6 @@ CREATE TABLE IF NOT EXISTS tasks
     content VARCHAR(255) NOT NULL, 
     create_at DATE NOT NULL, 
     update_at TIMESTAMP NOT NULL,
+    deadline VARCHAR(255),
     FOREIGN KEY(user_id) REFERENCES users(user_id)
 );

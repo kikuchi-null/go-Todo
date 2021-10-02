@@ -31,7 +31,7 @@ func save(c *gin.Context) {
 				log.Println(err)
 			}
 
-			user.CreateTask(c.PostForm("content"))
+			user.CreateTask(c.PostForm("content"), c.PostForm("deadline"))
 			c.Redirect(http.StatusFound, "/tasks")
 		}
 	}
