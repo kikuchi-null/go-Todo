@@ -12,7 +12,7 @@ import (
 func top(c *gin.Context) {
 
 	c.HTML(http.StatusOK, LoadPageList().Top, gin.H{
-		"message": "the simplest Task management application with Golang.",
+		"message": "the simplest task management application with Golang.",
 	})
 }
 
@@ -45,14 +45,14 @@ func index(c *gin.Context) {
 			log.Println(err)
 		}
 
-		Tasks, err := user.GetTasksByUser()
+		tasks, err := user.GetTasksByUser()
 		if err != nil {
 			log.Println(err)
 		}
 
 		c.HTML(http.StatusOK, LoadPageList().Index, gin.H{
 			"Name":  user.Name,
-			"Tasks": Tasks,
+			"Tasks": tasks,
 		})
 	}
 }
@@ -71,7 +71,7 @@ func save(c *gin.Context) {
 	session, err := session(c)
 	if err != nil {
 		log.Println(err)
-		c.Redirect(http.StatusFound, "/Tasks")
+		c.Redirect(http.StatusFound, "/tasks")
 	} else {
 		if c.Request.Method == http.MethodPost {
 			user, err := session.GetUserBySession()
@@ -80,10 +80,10 @@ func save(c *gin.Context) {
 			}
 
 			user.CreateTask(c.PostForm("content"))
-			c.Redirect(http.StatusFound, "/Tasks")
+			c.Redirect(http.StatusFound, "/tasks")
 		}
 	}
-	c.Redirect(http.StatusFound, "/Tasks")
+	c.Redirect(http.StatusFound, "/tasks")
 }
 
 func edit(c *gin.Context) {
@@ -98,12 +98,12 @@ func edit(c *gin.Context) {
 			log.Println(err)
 		}
 
-		Task_id, err := strconv.Atoi(c.Param("Task_id"))
+		task_id, err := strconv.Atoi(c.Param("task_id"))
 		if err != nil {
 			log.Println(err)
 		}
 
-		Task, err := models.GetTask(Task_id)
+		task, err := models.GetTask(task_id)
 		if err != nil {
 			log.Println(err)
 		}
@@ -111,13 +111,13 @@ func edit(c *gin.Context) {
 		if c.Request.Method == http.MethodGet {
 
 			c.HTML(http.StatusOK, LoadPageList().Edit, gin.H{
-				"Content": Task.Content,
-				"Task_ID": Task.Task_ID,
+				"Content": task.Content,
+				"Task_ID": task.Task_ID,
 			})
 		}
 
 	}
-	c.Redirect(http.StatusFound, "/Tasks")
+	c.Redirect(http.StatusFound, "/tasks")
 }
 
 func update(c *gin.Context) {
@@ -131,17 +131,17 @@ func update(c *gin.Context) {
 			log.Println(err)
 		}
 
-		Task_id, err := strconv.Atoi(c.Param("Task_id"))
+		task_id, err := strconv.Atoi(c.Param("task_id"))
 		if err != nil {
 			log.Println(err)
 		}
-		Task, err := models.GetTask(Task_id)
+		task, err := models.GetTask(task_id)
 		if err != nil {
 			log.Println(err)
 		}
 
-		Task.UpdateTask(c.PostForm("content"))
-		c.Redirect(http.StatusFound, "/Tasks")
+		task.UpdateTask(c.PostForm("content"))
+		c.Redirect(http.StatusFound, "/tasks")
 	}
 
 }
@@ -151,21 +151,21 @@ func confirm(c *gin.Context) {
 	if err != nil {
 		c.Redirect(http.StatusFound, "/login")
 	} else {
-		Task_id, err := strconv.Atoi(c.Param("Task_id"))
+		task_id, err := strconv.Atoi(c.Param("task_id"))
 		if err != nil {
 			log.Println(err)
 		}
 
-		Task, err := models.GetTask(Task_id)
+		task, err := models.GetTask(task_id)
 		if err != nil {
 			log.Println(err)
 		}
 
 		c.HTML(http.StatusOK, LoadPageList().Confirm, gin.H{
-			"Task_ID":   Task.Task_ID,
-			"Create_At": Task.Create_At,
-			"Content":   Task.Content,
-			"Update_At": Task.Update_At,
+			"Task_ID":   task.Task_ID,
+			"Create_At": task.Create_At,
+			"Content":   task.Content,
+			"Update_At": task.Update_At,
 		})
 	}
 
@@ -183,18 +183,18 @@ func delete(c *gin.Context) {
 			log.Println(err)
 		}
 
-		Task_id, err := strconv.Atoi(c.Param("Task_id"))
+		task_id, err := strconv.Atoi(c.Param("task_id"))
 		if err != nil {
 			log.Println(err)
 		}
 
-		Task, err := models.GetTask(Task_id)
+		task, err := models.GetTask(task_id)
 		if err != nil {
 			log.Println(err)
 		}
 
-		Task.DeleteTask()
-		c.Redirect(http.StatusFound, "/Tasks")
+		task.DeleteTask()
+		c.Redirect(http.StatusFound, "/tasks")
 
 	}
 }

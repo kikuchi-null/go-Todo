@@ -45,8 +45,8 @@ func StartServer() {
 	router.POST("/tasks/save", save)               // Save
 	router.GET("/tasks/edit/:task_id", edit)       // Edit
 	router.POST("/tasks/update/:task_id", update)  // Update
-	router.GET("/tasks/confirm/:task_id", confirm) // Confirm
 	router.POST("/tasks/delete/:task_id", delete)  // Delete
+	router.GET("/tasks/confirm/:task_id", confirm) // Confirm
 
 	router.Run(config.Config.Port)
 }
