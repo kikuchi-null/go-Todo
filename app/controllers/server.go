@@ -3,8 +3,8 @@ package controllers
 import (
 	"fmt"
 	"log"
-	"todo/app/models"
-	"todo/app/pkg/config"
+	"tasks/app/models"
+	"tasks/app/pkg/config"
 
 	"github.com/gin-gonic/gin"
 	"gopkg.in/go-ini/ini.v1"
@@ -15,6 +15,7 @@ type PageList struct {
 	Signup  string
 	Login   string
 	Index   string
+	User    string
 	Create  string
 	Edit    string
 	Confirm string
@@ -37,14 +38,15 @@ func StartServer() {
 	router.POST("/authenticate", authenticate) // Authenticate
 	router.GET("/logout", logout)              // Logout
 
-	// related to Todo.
-	router.GET("/todos", index)                    // List view of Todos
-	router.GET("/todos/create", create)            // Create
-	router.POST("/todos/save", save)               // Save
-	router.GET("/todos/edit/:todo_id", edit)       // Edit
-	router.POST("/todos/update/:todo_id", update)  // Update
-	router.GET("/todos/confirm/:todo_id", confirm) // Confirm
-	router.POST("/todos/delete/:todo_id", delete)  // Delete
+	// related to task.
+	router.GET("/tasks", index)
+	router.GET("/profile", profile)                // List view of tasks
+	router.GET("/tasks/create", create)            // Create
+	router.POST("/tasks/save", save)               // Save
+	router.GET("/tasks/edit/:task_id", edit)       // Edit
+	router.POST("/tasks/update/:task_id", update)  // Update
+	router.GET("/tasks/confirm/:task_id", confirm) // Confirm
+	router.POST("/tasks/delete/:task_id", delete)  // Delete
 
 	router.Run(config.Config.Port)
 }
@@ -60,6 +62,7 @@ func LoadPageList() PageList {
 		Signup:  cfg.Section("page").Key("signup").String(),
 		Login:   cfg.Section("page").Key("login").String(),
 		Index:   cfg.Section("page").Key("index").String(),
+		User:    cfg.Section("page").Key("user").String(),
 		Create:  cfg.Section("page").Key("create").String(),
 		Edit:    cfg.Section("page").Key("edit").String(),
 		Confirm: cfg.Section("page").Key("confirm").String(),

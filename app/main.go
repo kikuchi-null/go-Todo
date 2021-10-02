@@ -1,7 +1,7 @@
 package main
 
 import (
-	"todo/app/controllers"
+	"tasks/app/controllers"
 
 	"github.com/gin-gonic/gin"
 )

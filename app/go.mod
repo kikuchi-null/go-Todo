@@ -1,4 +1,4 @@
-module todo/app
+module tasks/app
 
 go 1.16
 

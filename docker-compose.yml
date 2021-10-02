@@ -3,7 +3,7 @@ version: "3.7"
 services: 
     mysql:
         build: ./docker/mysql
-        container_name: todo-db
+        container_name: tasks-db
         environment: 
             - MYSQL_ROOT_PASSWORD=golang
             - TZ=Asia/Tokyo
@@ -16,13 +16,13 @@ services:
     app:
         build: ./docker/go
         tty: true
-        container_name: todo
+        container_name: tasks
         environment: 
             - TZ=Asia/Tokyo
         ports: 
             - "8080:8080"
         volumes: 
-            - ./:/go/src/todo/
+            - ./:/go/src/tasks/
         depends_on: 
             - mysql
 

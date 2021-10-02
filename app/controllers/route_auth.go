@@ -3,8 +3,8 @@ package controllers
 import (
 	"log"
 	"net/http"
+	"tasks/app/models"
 	"time"
-	"todo/app/models"
 
 	"github.com/gin-gonic/gin"
 )
@@ -40,7 +40,7 @@ func signup(c *gin.Context) {
 
 	} else {
 
-		c.Redirect(http.StatusFound, "/todos")
+		c.Redirect(http.StatusFound, "/tasks")
 	}
 }
 
@@ -50,7 +50,7 @@ func login(c *gin.Context) {
 	if err != nil {
 		c.HTML(http.StatusOK, LoadPageList().Login, gin.H{})
 	} else {
-		c.Redirect(http.StatusFound, "/todos")
+		c.Redirect(http.StatusFound, "/tasks")
 	}
 }
 
@@ -68,7 +68,7 @@ func authenticate(c *gin.Context) {
 		}
 
 		c.SetCookie("gin_cookie", session.UUID, 3600, "/", "localhost", false, true)
-		c.Redirect(http.StatusFound, "/todos")
+		c.Redirect(http.StatusFound, "/tasks")
 
 	} else {
 		c.Redirect(http.StatusFound, "/login")

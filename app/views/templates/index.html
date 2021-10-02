@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 {{template "header"}}
 
 <body>
@@ -14,20 +15,20 @@
         <ul class="nav justify-content-center">
             <li class="nav-item">
                 <h3>
-                    <a class="nav-link active" aria-current="page" href="/todos/create">Create</a>
+                    <a class="nav-link active" aria-current="page" href="/tasks/create">Create</a>
                 </h3>
             </li>
         </ul>
     </div>
     <div class="container d-grid gap-3">
-        {{range .Todos}}
+        {{range .Tasks}}
         <div class="card">
             <h5 class="card-header">Created at {{.Create_At}}</h5>
                 <div class="card-body">
                     <h4 class="card-text">{{.Content}}</h3><br>
                     <h6 class="card-subtitle mb-2 text-muted">Updated at {{.Update_At}}</h6>
-                    <a href="/todos/edit/{{.Todo_ID}}" class="btn btn-primary">Edit</a>
-                    <a href="/todos/confirm/{{.Todo_ID}}" class="btn btn-primary">Delete</a>
+                    <a href="/tasks/edit/{{.Task_ID}}" class="btn btn-primary">Edit</a>
+                    <a href="/tasks/confirm/{{.Task_ID}}" class="btn btn-primary">Delete</a>
                 </div>
         </div>
         {{end}}                        

@@ -4,7 +4,7 @@ import (
 	"crypto/sha1"
 	"fmt"
 	"log"
-	"todo/app/pkg/config"
+	"tasks/app/pkg/config"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/google/uuid"

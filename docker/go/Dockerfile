@@ -8,5 +8,5 @@ RUN go get -u "github.com/gin-gonic/gin"
 RUN go get -u "github.com/google/uuid"
 RUN go get -u "gopkg.in/go-ini/ini.v1"
 
-WORKDIR /go/src/todo/app
-COPY ../../ /go/src/todo
+WORKDIR /go/src/tasks/app
+COPY ../../ /go/src/tasks

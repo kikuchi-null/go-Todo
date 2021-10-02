@@ -4,7 +4,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
-	"todo/app/models"
+	"tasks/app/models"
 
 	"github.com/gin-gonic/gin"
 )
@@ -14,6 +14,24 @@ func top(c *gin.Context) {
 	c.HTML(http.StatusOK, LoadPageList().Top, gin.H{
 		"message": "the simplest Task management application with Golang.",
 	})
+}
+
+func profile(c *gin.Context) {
+	session, err := session(c)
+	if err != nil {
+		c.Redirect(http.StatusOK, "/")
+	} else {
+		user, err := session.GetUserBySession()
+		if err != nil {
+			log.Println(err)
+		}
+
+		c.HTML(http.StatusOK, LoadPageList().User, gin.H{
+			"Name":      user.Name,
+			"Email":     user.Email,
+			"CreatedAt": user.Create_At,
+		})
+	}
 }
 
 func index(c *gin.Context) {
@@ -27,14 +45,14 @@ func index(c *gin.Context) {
 			log.Println(err)
 		}
 
-		todos, err := user.GetTodosByUser()
+		Tasks, err := user.GetTasksByUser()
 		if err != nil {
 			log.Println(err)
 		}
 
 		c.HTML(http.StatusOK, LoadPageList().Index, gin.H{
 			"Name":  user.Name,
-			"Todos": todos,
+			"Tasks": Tasks,
 		})
 	}
 }
@@ -53,7 +71,7 @@ func save(c *gin.Context) {
 	session, err := session(c)
 	if err != nil {
 		log.Println(err)
-		c.Redirect(http.StatusFound, "/todos")
+		c.Redirect(http.StatusFound, "/Tasks")
 	} else {
 		if c.Request.Method == http.MethodPost {
 			user, err := session.GetUserBySession()
@@ -61,11 +79,11 @@ func save(c *gin.Context) {
 				log.Println(err)
 			}
 
-			user.CreateTodo(c.PostForm("content"))
-			c.Redirect(http.StatusFound, "/todos")
+			user.CreateTask(c.PostForm("content"))
+			c.Redirect(http.StatusFound, "/Tasks")
 		}
 	}
-	c.Redirect(http.StatusFound, "/todos")
+	c.Redirect(http.StatusFound, "/Tasks")
 }
 
 func edit(c *gin.Context) {
@@ -80,12 +98,12 @@ func edit(c *gin.Context) {
 			log.Println(err)
 		}
 
-		todo_id, err := strconv.Atoi(c.Param("todo_id"))
+		Task_id, err := strconv.Atoi(c.Param("Task_id"))
 		if err != nil {
 			log.Println(err)
 		}
 
-		todo, err := models.GetTodo(todo_id)
+		Task, err := models.GetTask(Task_id)
 		if err != nil {
 			log.Println(err)
 		}
@@ -93,13 +111,13 @@ func edit(c *gin.Context) {
 		if c.Request.Method == http.MethodGet {
 
 			c.HTML(http.StatusOK, LoadPageList().Edit, gin.H{
-				"Content": todo.Content,
-				"Todo_ID": todo.Todo_ID,
+				"Content": Task.Content,
+				"Task_ID": Task.Task_ID,
 			})
 		}
 
 	}
-	c.Redirect(http.StatusFound, "/todos")
+	c.Redirect(http.StatusFound, "/Tasks")
 }
 
 func update(c *gin.Context) {
@@ -113,17 +131,17 @@ func update(c *gin.Context) {
 			log.Println(err)
 		}
 
-		todo_id, err := strconv.Atoi(c.Param("todo_id"))
+		Task_id, err := strconv.Atoi(c.Param("Task_id"))
 		if err != nil {
 			log.Println(err)
 		}
-		todo, err := models.GetTodo(todo_id)
+		Task, err := models.GetTask(Task_id)
 		if err != nil {
 			log.Println(err)
 		}
 
-		todo.UpdateTodo(c.PostForm("content"))
-		c.Redirect(http.StatusFound, "/todos")
+		Task.UpdateTask(c.PostForm("content"))
+		c.Redirect(http.StatusFound, "/Tasks")
 	}
 
 }
@@ -133,21 +151,21 @@ func confirm(c *gin.Context) {
 	if err != nil {
 		c.Redirect(http.StatusFound, "/login")
 	} else {
-		todo_id, err := strconv.Atoi(c.Param("todo_id"))
+		Task_id, err := strconv.Atoi(c.Param("Task_id"))
 		if err != nil {
 			log.Println(err)
 		}
 
-		todo, err := models.GetTodo(todo_id)
+		Task, err := models.GetTask(Task_id)
 		if err != nil {
 			log.Println(err)
 		}
 
 		c.HTML(http.StatusOK, LoadPageList().Confirm, gin.H{
-			"Todo_ID":   todo.Todo_ID,
-			"Create_At": todo.Create_At,
-			"Content":   todo.Content,
-			"Update_At": todo.Update_At,
+			"Task_ID":   Task.Task_ID,
+			"Create_At": Task.Create_At,
+			"Content":   Task.Content,
+			"Update_At": Task.Update_At,
 		})
 	}
 
@@ -165,18 +183,18 @@ func delete(c *gin.Context) {
 			log.Println(err)
 		}
 
-		todo_id, err := strconv.Atoi(c.Param("todo_id"))
+		Task_id, err := strconv.Atoi(c.Param("Task_id"))
 		if err != nil {
 			log.Println(err)
 		}
 
-		todo, err := models.GetTodo(todo_id)
+		Task, err := models.GetTask(Task_id)
 		if err != nil {
 			log.Println(err)
 		}
 
-		todo.DeleteTodo()
-		c.Redirect(http.StatusFound, "/todos")
+		Task.DeleteTask()
+		c.Redirect(http.StatusFound, "/Tasks")
 
 	}
 }
