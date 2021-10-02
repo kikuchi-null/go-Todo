@@ -1,6 +1,11 @@
-#! /bin/bash
+#! /bin/ash
 
-go mod tidy
-echo ""T
-echo "Go Live."
-go run main.go
+go mod tidy >> /dev/null
+
+if [ $? -eq 0 ]; then
+    echo "Go Live."
+    go run main.go
+else
+    echo "\"go mod tidy\" is failed"
+fi
+
