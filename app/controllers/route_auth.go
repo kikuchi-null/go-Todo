@@ -13,7 +13,6 @@ func signup(c *gin.Context) {
 	_, err := session(c)
 
 	if err != nil {
-
 		if c.Request.Method == http.MethodGet {
 			c.HTML(http.StatusOK, LoadPageList().Signup, gin.H{})
 
