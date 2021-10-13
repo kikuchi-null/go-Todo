@@ -19,7 +19,7 @@ var Config ConfigList
 
 func init() {
 	LoadConfig()
-	utils.Loggingsettings(Config.LogFile)
+	utils.LoggingSettings(Config.LogFile)
 }
 
 func LoadConfig() {
