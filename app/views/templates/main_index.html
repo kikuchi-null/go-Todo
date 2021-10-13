@@ -25,10 +25,9 @@
         <div class="card">
             <h5 class="card-header">Created at {{.Create_At}}</h5>
                 <div class="card-body">
-                    <h4 class="card-text">{{.Content}}</h3><br>
+                    <h4><a href="/tasks/edit/{{.Task_ID}}">{{.Content}}</a></h4>
                     <h6 class="card-subtitle mb-2">By {{.Deadline}}</h6>
                     <h6 class="card-subtitle mb-2 text-muted">Updated at {{.Update_At}}</h6>
-                    <a href="/tasks/edit/{{.Task_ID}}" class="btn btn-primary">Edit</a>
                     <a href="/tasks/confirm/{{.Task_ID}}" class="btn btn-primary">Delete</a>
                 </div>
         </div>
