@@ -75,19 +75,14 @@ func authenticate(c *gin.Context) {
 }
 
 func logout(c *gin.Context) {
-	cookie, err := c.Cookie("gin_cookie")
+	session, err := session(c)
 	if err != nil {
 		log.Println(err)
 	}
-
 	if err != http.ErrNoCookie {
-		session := models.Session{
-			UUID: cookie,
-		}
-
 		session.DeleteSessionByUUID()
 	}
 
-	c.Redirect(http.StatusFound, "/login")
+	c.Redirect(http.StatusFound, "/")
 
 }
