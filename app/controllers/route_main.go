@@ -8,7 +8,6 @@ import (
 )
 
 func top(c *gin.Context) {
-
 	c.HTML(http.StatusOK, LoadPageList().Top, gin.H{
 		"message": "The simplest task management application with Golang.",
 	})
