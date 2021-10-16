@@ -15,7 +15,6 @@ func signup(c *gin.Context) {
 	if err != nil {
 		if c.Request.Method == http.MethodGet {
 			c.HTML(http.StatusOK, LoadPageList().Signup, gin.H{})
-
 		} else if c.Request.Method == http.MethodPost {
 			u := models.User{
 				UUID:      models.CreateUUID().String(),
@@ -32,13 +31,9 @@ func signup(c *gin.Context) {
 					"message": err,
 				})
 			}
-
 			c.Redirect(http.StatusFound, "/login")
-
 		}
-
 	} else {
-
 		c.Redirect(http.StatusFound, "/tasks")
 	}
 }
@@ -59,16 +54,13 @@ func authenticate(c *gin.Context) {
 		log.Println(err)
 		c.Redirect(http.StatusFound, "/login")
 	}
-
 	if user.Password == models.Encrypt(c.PostForm("password")) {
 		session, err := user.CreateSession()
 		if err != nil {
 			log.Println(err)
 		}
-
 		c.SetCookie("gin_cookie", session.UUID, 3600, "/", "localhost", false, true)
 		c.Redirect(http.StatusFound, "/tasks")
-
 	} else {
 		c.Redirect(http.StatusFound, "/login")
 	}
@@ -82,7 +74,5 @@ func logout(c *gin.Context) {
 	if err != http.ErrNoCookie {
 		session.DeleteSessionByUUID()
 	}
-
 	c.Redirect(http.StatusFound, "/")
-
 }

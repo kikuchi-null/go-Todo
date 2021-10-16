@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"tasks/app/pkg/config"
+	"time"
 
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/google/uuid"
@@ -29,11 +30,8 @@ func Encrypt(plainPassword string) (cryptPassword string) {
 	return cryptPassword
 }
 
-/*
 func stringToTime(str string) time.Time {
 	layout := "2006-01-02T15:04:05"
 	value, _ := time.Parse(layout, str)
-	fmt.Println(value)
 	return value
 }
-*/

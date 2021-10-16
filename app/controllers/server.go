@@ -77,12 +77,10 @@ func session(c *gin.Context) (session models.Session, err error) {
 		session = models.Session{
 			UUID: cookie,
 		}
-
 		valid, _ := session.IsSession()
 		if !valid {
 			err = fmt.Errorf("invalid session")
 		}
 	}
-
 	return session, err
 }

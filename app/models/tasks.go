@@ -10,10 +10,10 @@ type Task struct {
 	Content   string
 	Create_At interface{}
 	Update_At interface{}
-	Deadline  string
+	// Deadline Interface{}
 }
 
-func (u *User) CreateTask(content string, deadline string) (err error) {
+func (u *User) CreateTask(content string) (err error) {
 	DB := gormConnect()
 	defer DB.Close()
 
@@ -22,7 +22,7 @@ func (u *User) CreateTask(content string, deadline string) (err error) {
 		Content:   content,
 		Create_At: time.Now(),
 		Update_At: time.Now(),
-		Deadline:  deadline,
+		// Deadline:  stringToTime(deadline),
 	}
 
 	result := DB.Create(&t)
