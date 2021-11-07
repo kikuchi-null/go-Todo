@@ -1,11 +1,12 @@
-#! /bin/ash
+#!/bin/ash
 
-go mod tidy > /dev/null
+echo "==>Checking..."
+go mod tidy >/dev/null 2>&1
 
 if [ $? -eq 0 ]; then
-    echo "URL: http://localhost:8080/"
+    echo "==>Go live (http://localhost:8080/)"
     go run main.go
 else
-    echo "Failed to start"
+    echo "==>Failed to start"
 fi
 
