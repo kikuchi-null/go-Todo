@@ -11,11 +11,8 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-var Driver string = config.Config.SQLDriver
-var DBname string = config.Config.DBName
-
 func gormConnect() *gorm.DB {
-	DB, err := gorm.Open(Driver, DBname)
+	DB, err := gorm.Open(config.Config.SQLDriver, config.Config.DBName)
 	if err != nil {
 		log.Fatalln()
 	}
