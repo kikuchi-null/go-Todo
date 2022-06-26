@@ -18,7 +18,7 @@ services:
         tty: true
         container_name: tasks
         environment: 
-            - TZ=Asia/Tokyo
+            - TZ=Asia/Tokyodocke
         ports: 
             - "8080:8080"
         volumes: 
