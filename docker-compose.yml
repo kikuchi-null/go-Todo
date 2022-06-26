@@ -3,7 +3,7 @@ version: "3.7"
 services: 
     mysql:
         build: ./docker/mysql
-        container_name: tasks-db
+        container_name: tasks-mysql
         environment: 
             - MYSQL_ROOT_PASSWORD=golang
             - TZ=Asia/Tokyo
@@ -16,9 +16,10 @@ services:
     app:
         build: ./docker/go
         tty: true
-        container_name: tasks
+        container_name: tasks-golang
         environment: 
-            - TZ=Asia/Tokyodocke
+            - TZ=Asia/Tokyo
+            - GOPATH=/go
         ports: 
             - "8080:8080"
         volumes: 
